@@ -27,7 +27,7 @@ class GenreList(APIView):
 
 
 class GenreDetail(APIView):
-    def get_object(self, pk:int) -> Genre:
+    def get_object(self, pk: int) -> Genre:
         return get_object_or_404(Genre, pk=pk)
 
     def get(self, request, pk: int) -> Response:
@@ -40,7 +40,7 @@ class GenreDetail(APIView):
         serializer.save()
         return Response(serializer.data, status=status.HTTP_200_OK)
 
-    def patch(self, request, pk:int) -> Response:
+    def patch(self, request, pk: int) -> Response:
         serializer = GenreSerializer(
             self.get_object(pk=pk),
             data=request.data,
@@ -50,7 +50,7 @@ class GenreDetail(APIView):
         serializer.save()
         return Response(serializer.data, status=status.HTTP_200_OK)
 
-    def delete(self, request, pk:int) -> Response:
+    def delete(self, request, pk: int) -> Response:
         self.get_object(pk=pk).delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
